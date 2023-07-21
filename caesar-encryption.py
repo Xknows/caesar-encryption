@@ -26,11 +26,12 @@ class caesar:
             decryption_key[key[letter]] = letter
         return decryption_key
 
+
 while True:
     obj = caesar()
     key = obj.generate_key(3)
     x = int(input("------------------------------------------- " +
-            "\nEnter your choice:\n   1= encrypt\n   2= decrypt\n"))
+            "\nEnter your choice:\n   1= encrypt\n   2= decrypt\n   3= attack to find massage\n"))
     if x == 1:
         massage = input("Enter your massage:\n  ").upper()
         print("  cipher is: " + obj.encrypt(key, massage))
@@ -38,4 +39,12 @@ while True:
     if x == 2:
         cipher = input("Enter your cipher:\n  ").upper()
         decryption_key = obj.decrypt(key)
-        print("  Your original text is: " + obj.encrypt(decryption_key, cipher))
+        print("  Your original text is: " +
+              obj.encrypt(decryption_key, cipher))
+
+    if x == 3:
+        cipher = input("Enter your cipher:\n  ").upper()
+        for iteration in range(26):
+            decryption_key = obj.generate_key(iteration)
+            print("  Try " + str(iteration) + ": " +
+                  obj.encrypt(decryption_key, cipher))
