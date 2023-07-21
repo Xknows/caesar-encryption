@@ -19,10 +19,23 @@ class caesar:
                 cipher += letter
         return cipher
 
+    def decrypt(self, key):
+        self.key = key
+        decryption_key = {}
+        for letter in key:
+            decryption_key[key[letter]] = letter
+        return decryption_key
 
+while True:
+    obj = caesar()
+    key = obj.generate_key(3)
+    x = int(input("------------------------------------------- " +
+            "\nEnter your choice:\n   1= encrypt\n   2= decrypt\n"))
+    if x == 1:
+        massage = input("Enter your massage:\n  ").upper()
+        print("  cipher is: " + obj.encrypt(key, massage))
 
-
-obj = caesar()
-key = obj.generate_key(3)
-massage = input("Enter your massage: \n  ").upper()
-print("  cipher is: " + obj.encrypt(key, massage))
+    if x == 2:
+        cipher = input("Enter your cipher:\n  ").upper()
+        decryption_key = obj.decrypt(key)
+        print("  Your original text is: " + obj.encrypt(decryption_key, cipher))
